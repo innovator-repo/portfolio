@@ -195,10 +195,30 @@ html[data-skin=dark] .tilt .glare{background:radial-gradient(420px circle at var
 .role{position:relative}
 @media (hover:none){.tilt{transform:none!important}.tilt .glare{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}.app{transform:none!important}}
+
+.ai{position:relative;overflow:hidden}
+.ai .wall{inset:8% -10% auto;height:560px;border-radius:50%;filter:blur(110px);opacity:.28}
+.ai .wrap{position:relative}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;background:var(--glass);backdrop-filter:blur(30px) saturate(180%);border-radius:28px;box-shadow:0 0 0 .5px var(--line),var(--lift)}
+.flow>div{padding:30px 28px;position:relative}
+.flow>div+div{border-left:.5px solid var(--line)}
+.flow>div+div:before{content:"›";position:absolute;left:-12px;top:34px;width:24px;height:24px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 .5px var(--line);display:grid;place-items:center;font-size:15px;color:var(--faint);line-height:22px;text-align:center}
+.flow small{font-size:12px;font-weight:600;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.flow h4{font-size:19px;letter-spacing:-.015em;margin:8px 0 6px;font-weight:600}
+.flow p{font-size:14.5px;color:var(--mute)}
+.who{display:flex;gap:6px;margin-top:14px}.who i{font-style:normal;font-size:11.5px;padding:3px 9px;border-radius:99px;font-weight:500}
+.who .me{background:rgba(0,113,227,.12);color:var(--link)}.who .bot{background:rgba(191,90,242,.13);color:#a33fd6}
+html[data-skin=dark] .who .bot{color:#da8fff}
+.aic p{font-size:15.5px}
+.aic ul{margin-top:16px}.aic li{font-size:14.5px;color:var(--mute);padding:7px 0 7px 24px;position:relative;border-top:.5px solid var(--line)}
+.aic li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
+.prod .aiuse{margin-top:14px;font-size:13.5px;color:var(--mute);padding:10px 14px;border-radius:14px;background:color-mix(in srgb,var(--purple) 8%,transparent);box-shadow:inset 0 0 0 .5px color-mix(in srgb,var(--purple) 25%,transparent)}
+.prod .aiuse b{color:var(--ink);font-weight:600}
+@media(max-width:820px){.flow{grid-template-columns:1fr}.flow>div+div{border-left:0;border-top:.5px solid var(--line)}.flow>div+div:before{display:none}}
 </style>
 </head>
 <body>
-<nav><div class="capsule"><b><i class="ico i-bk">BK</i>Bharat Kumar</b><a class="cur" href="#top">Overview</a><a href="#work">Work</a><a href="#solutions">Solutions</a><a href="#approach">Approach</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><button class="theme" aria-label="Switch theme">☾</button><a class="go" href="#contact">Get in touch</a></div></nav>
+<nav><div class="capsule"><b><i class="ico i-bk">BK</i>Bharat Kumar</b><a class="cur" href="#top">Overview</a><a href="#work">Work</a><a href="#solutions">Solutions</a><a href="#ai">AI</a><a href="#approach">Approach</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><button class="theme" aria-label="Switch theme">☾</button><a class="go" href="#contact">Get in touch</a></div></nav>
 
 <header class="hero" id="top"><div class="wrap">
   <span class="eyebrow">Salesforce Developer</span>
@@ -266,13 +286,31 @@ html[data-skin=dark] .tilt .glare{background:radial-gradient(420px circle at var
 <section id="solutions" class="alt"><div class="wrap">
   <h2 class="h">Built on my own time. <span>Tools I wanted to exist.</span></h2>
   <div class="grid">
-    <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2">⌕</i><div class="k">Developer tooling · Apex + LWC</div><h3>Transaction Inspector</h3><p>An in-org profiler for what a record save really runs: every query, DML statement, flow, trigger, callout and async job, with governor-limit usage and flagged risks. Data never leaves the org.</p><div class="more">How it works ›</div>
+    <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2">⌕</i><div class="k">Developer tooling · Apex + LWC</div><h3>Transaction Inspector</h3><p>An in-org profiler for what a record save really runs: every query, DML statement, flow, trigger, callout and async job, with governor-limit usage and flagged risks. Data never leaves the org.</p><div class="aiuse"><b>Built with AI:</b> the log parser and findings rules were drafted with an AI agent from a written spec, then tuned by hand against real debug logs.</div><div class="more">How it works ›</div>
       <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Findings</strong></div><div class="row"><b>SOQL queries</b><div class="pb"><s style="width:38%"></s></div><span>38 / 100</span></div><div class="row"><b>CPU time</b><div class="pb o"><s style="width:79%"></s></div><span>79%</span></div><div class="row"><b>Query in loop</b><span>line 42</span><span class="st r">High</span></div></div></article>
-    <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3">◷</i><div class="k">Platform operations · Apex + LWC</div><h3>Scheduled Jobs Manager</h3><p>One hourly orchestrator replaces scattered System.schedule jobs. Admins view, pause, edit and run schedules from one tab, and every launch is checked against async capacity first.</p><div class="more">How it works ›</div>
+    <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3">◷</i><div class="k">Platform operations · Apex + LWC</div><h3>Scheduled Jobs Manager</h3><p>One hourly orchestrator replaces scattered System.schedule jobs. Admins view, pause, edit and run schedules from one tab, and every launch is checked against async capacity first.</p><div class="aiuse"><b>Built with AI:</b> the Apex and JavaScript cron engines were generated from one shared test suite, so both parse Salesforce cron identically.</div><div class="more">How it works ›</div>
       <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Schedules</strong></div><div class="row"><b>Nightly sync</b><span>0 0 2 * * ?</span><span class="stt">Active</span><span class="sw on" role="switch"></span></div><div class="row"><b>Weekly cleanup</b><span>0 0 6 ? * MON</span><span class="stt">Active</span><span class="sw on" role="switch"></span></div><div class="row"><b>Data checks</b><span>0 0 * * * ?</span><span class="stt">Paused</span><span class="sw" role="switch"></span></div></div></article>
   </div>
 </div></section>
 
+
+<section class="ai" id="ai"><div class="wall"></div><div class="wrap">
+  <span class="eyebrow">AI-assisted engineering</span>
+  <h2 class="h" style="margin-top:8px">AI writes faster. <span>I decide what ships.</span></h2>
+  <p class="lede" style="margin:18px 0 0;text-align:left">I use AI coding agents as a force multiplier on the tools above: they draft, refactor and generate tests at speed, while I own the architecture, the platform limits and every line that reaches an org.</p>
+  <div class="flow">
+    <div><small>01 · Specify</small><h4>Design before prompting</h4><p>I write the data model, transaction boundaries and limit budget first, so the agent works inside a real spec, not a guess.</p><div class="who"><i class="me">Me</i></div></div>
+    <div><small>02 · Generate</small><h4>Agent drafts in small slices</h4><p>One class or component at a time with project context: Apex services, LWC, cron parser, log parser and test data factories.</p><div class="who"><i class="bot">AI</i><i class="me">Me</i></div></div>
+    <div><small>03 · Review</small><h4>Platform-aware review</h4><p>Every diff checked for SOQL in loops, bulk safety, sharing and CRUD/FLS, and async chain depth. AI misses these; I don't.</p><div class="who"><i class="me">Me</i></div></div>
+    <div><small>04 · Prove</small><h4>Tests are the gate</h4><p>AI widens test coverage with edge cases and bulk scenarios; nothing merges until Apex tests pass in a scratch org.</p><div class="who"><i class="bot">AI</i><i class="me">Me</i></div></div>
+  </div>
+  <div class="grid">
+    <div class="tile s3 aic"><i class="ico c2" style="width:46px;height:46px;font-size:20px;margin-bottom:18px">✦</i><div class="k">Building with AI</div><h3>Faster, not looser</h3><p>AI handles the repetitive surface area so I spend my time on design and edge cases.</p>
+      <ul><li>Parsers and engines drafted from specs, then hardened by hand</li><li>Bulk and negative-path Apex tests generated, then reviewed</li><li>Architecture docs and admin guides drafted from the code</li></ul></div>
+    <div class="tile s3 aic"><i class="ico c5" style="width:46px;height:46px;font-size:20px;margin-bottom:18px">◎</i><div class="k">Building AI into Salesforce</div><h3>Agentforce and Einstein</h3><p>Certified AI Specialist and AI Associate. I prototype agents that act on real org data, safely.</p>
+      <ul><li>Agentforce agents prototyped for business process automation</li><li>Actions backed by Apex with permission and data-access checks</li><li>Prompt design grounded in org records, with trust-layer guardrails</li></ul></div>
+  </div>
+</div></section>
 <section id="approach"><div class="wrap">
   <h2 class="h">How I build. <span>Every time.</span></h2>
   <div class="steps">
@@ -335,7 +373,7 @@ const R=matchMedia('(prefers-reduced-motion: reduce)').matches, $=(q,c=document)
 // theme toggle
 const tb=document.querySelector('.theme');tb.onclick=()=>{const d=document.documentElement;d.dataset.skin=d.dataset.skin==='dark'?'light':'dark';tb.textContent=d.dataset.skin==='dark'?'☀':'☾'};
 // reveal with stagger
-$('.h,.lede,.widgets>*,.grid>*,.steps>*,.role,.badges>*,.sb>*,.names,.edu,.end .cta').forEach(e=>{e.classList.add('rv');const sib=[...e.parentNode.children].indexOf(e);e.style.setProperty('--d',(Math.min(sib,6)*.07)+'s')});
+$('.h,.lede,.flow,.widgets>*,.grid>*,.steps>*,.role,.badges>*,.sb>*,.names,.edu,.end .cta').forEach(e=>{e.classList.add('rv');const sib=[...e.parentNode.children].indexOf(e);e.style.setProperty('--d',(Math.min(sib,6)*.07)+'s')});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);count(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
 $('.rv').forEach(e=>io.observe(e));
 // count-up
