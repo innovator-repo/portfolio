@@ -5,8 +5,8 @@ Personal portfolio site, live at https://innovator-repo.github.io/portfolio/
 ## Stack
 
 - Astro 6, static output
-- Vanilla JavaScript for the interactions (`src/scripts/app.js`); no framework runtime
-- Plain CSS (`src/styles/global.css`)
+- Vanilla JavaScript for the interactions (`src/scripts/site.js`); no framework runtime
+- Plain CSS (`src/styles/site.css`)
 
 ## Editing content
 
@@ -21,12 +21,10 @@ All copy and data live in `src/data/site.js`. Edit that file; the page in `src/p
 ## Layout
 
 ```
-src/data/site.js        content, plus the skill -> category colour map
-src/pages/index.astro   page shell (meta, nav, sections)
-src/components/         Hero, Experience, Work, Skills, Credentials, Contact
-src/styles/tokens.css   colour tokens; data-cat="apex|lwc|integ|auto|cloud" sets --c
-src/styles/*.css        global + per-section styles
-src/scripts/            app.js (reveal, progress, nav), hero.js (org-graph canvas)
+src/data/site.js        all content: roles, projects, solutions, AI section, stats
+src/pages/index.astro   the single page, rendered from site.js
+src/styles/site.css     all styles; light by default, dark via data-skin
+src/scripts/site.js     scroll depth, reveals, tilt, demo console, theme toggle
 public/                 static assets
 ```
 
@@ -36,4 +34,4 @@ public/                 static assets
 
 ## Design notes
 
-Dark aurora base with a colour code used site-wide: purple for Apex and async, cyan for UI (LWC, Aura), green for integration, amber for automation and blue for clouds. The hero draws the skills as an interactive org graph in those colours. Animation pauses offscreen and is disabled under `prefers-reduced-motion`.
+Light, Apple-inspired design: large type, soft depth, glass navigation and a scroll-driven 3D product window. A dark mode is one click away.

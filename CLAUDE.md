@@ -5,12 +5,9 @@ Personal portfolio site built with Astro 6, vanilla JavaScript, and plain CSS sh
 ## Architecture & Layout
 
 - **`src/data/site.js`**: Central data store containing all copy, roles, projects, credentials, and skill taxonomies. Edit here to update content.
-- **`src/pages/index.astro`**: Main page shell importing modular Astro sections.
-- **`src/components/`**: Clean UI sections (`Hero.astro`, `Experience.astro`, `Work.astro`, `Skills.astro`, `Credentials.astro`, `Contact.astro`, `DevConsole.astro`).
-- **`src/scripts/`**: Framework-free vanilla JS:
-  - `app.js`: Navigation state, section reveal animations, scroll progress.
-  - `hero.js`: Interactive canvas-based Salesforce org skills graph.
-- **`src/styles/`**: Plain CSS with CSS custom properties (`tokens.css`, `global.css`). Dark aurora theme with semantic skill categories.
+- **`src/pages/index.astro`**: The single page. All sections are rendered here from `site.js` data.
+- **`src/scripts/site.js`**: Framework-free vanilla JS: scroll-driven 3D hero window, section reveals, card tilt and glare, count-ups, interactive Transaction Inspector demo, schedule switches, light/dark toggle (persisted in `localStorage`).
+- **`src/styles/site.css`**: Plain CSS with custom properties. Light Apple-style theme by default, dark via `html[data-skin=dark]`.
 - **`public/`**: Static public assets (favicons, sitemap, robots.txt).
 
 ## Development & Build Commands
@@ -25,4 +22,4 @@ npm run preview    # Locally previews production build from dist/
 
 - **Excluded Paths**: Never read or search `dist/`, `.astro/`, or `node_modules/`. All source logic lives inside `src/`.
 - **Content Updates**: Keep edits surgical inside `src/data/site.js` when modifying projects, roles, skills, or personal descriptions.
-- **Accessibility & Performance**: Maintain zero framework runtime overhead, ensure CSS animations respect `prefers-reduced-motion`, and preserve lightweight canvas lifecycle pausing when offscreen.
+- **Accessibility & Performance**: Maintain zero framework runtime overhead, ensure animations respect `prefers-reduced-motion`, and keep tilt effects disabled on touch devices.

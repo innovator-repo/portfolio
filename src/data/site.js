@@ -65,25 +65,11 @@ export const roles = [
 
 export const projects = [
   {
-    kicker: 'Healthcare · PCGI · Current',
-    title: 'MNK',
-    headline: 'PA Re-Auth Hub and Outbound Fax Analysis',
-    short:
-      'A weekly batch and queueable chain finds Prior Authorizations expiring within 40 days, opens Reimbursement cases, runs eBV and syncs to ARMory. A real-time LWC dashboard shows the results.',
-    stack: ['Batch Apex', 'Queueable', 'Scheduled Jobs', 'LWC', 'Apex'],
-    points: [
-      'PA Re-Auth Hub: a weekly batch-and-queueable job chain. It identifies patients whose Prior Authorization expires within 40 days, creates Reimbursement cases automatically, triggers electronic benefit verification (eBV) and syncs the results to the ARMory system.',
-      'Outbound Fax Analysis engine: it classifies the daily fax queue and generates downloadable Excel workbooks and draft overview emails, which ended manual report compilation.',
-      'Redesigned Daily Data Checks into one actionable to-do list with one-click auto-fix actions, and added an hourly Batch Orchestrator tab for scheduled job health.',
-      "Wrote the developer architecture documentation and end-user guides, which the team uses as its reference.",
-    ],
-  },
-  {
-    kicker: 'Insurance · Fexle',
+    kicker: 'Insurance · Service Cloud',
     title: 'Assurant',
     headline: 'Visualforce to LWC modernization',
     short:
-      'Migrated 50+ complex Visualforce pages to LWC and Aura in an 18-member global architecture team, and automated Service Cloud case routing and SLA tracking.',
+      'Modernized a highly customized enterprise insurance platform in an 18-member global architecture team: Visualforce rebuilt as LWC and Aura, with automated case routing, escalation rules and SLA tracking.',
     stack: ['Service Cloud', 'LWC', 'Aura', 'Visualforce'],
     points: [
       'Scaled a highly customized enterprise insurance platform on Service Cloud, as part of an 18-member global architecture team.',
@@ -92,7 +78,7 @@ export const projects = [
     ],
   },
   {
-    kicker: 'Customer engagement · Fexle',
+    kicker: 'Customer engagement',
     title: 'CleverTap',
     headline: 'High-volume async processing and Quip integration',
     short:
@@ -105,7 +91,7 @@ export const projects = [
     ],
   },
   {
-    kicker: 'Digital advertising · Fexle',
+    kicker: 'Digital advertising · Sales Cloud',
     title: 'Pinterest',
     headline: 'Sales Cloud quoting and automation',
     short:
@@ -118,10 +104,19 @@ export const projects = [
     ],
   },
   {
-    kicker: 'Real estate · Fexle',
+    kicker: 'Healthcare · PCGI · Current',
+    title: 'Outbound Fax Analysis',
+    headline: 'Daily fax queue analysis and data checks',
+    short:
+      'An engine that classifies the daily fax queue and generates Excel workbooks and draft overview emails, ending manual report compilation. Daily data checks became one to-do list with one-click fixes.',
+    stack: ['Apex', 'LWC', 'Scheduled Jobs'],
+    points: [],
+  },
+  {
+    kicker: 'Real estate',
     title: 'Robotex',
     headline: 'GST portal integration',
-    short: 'Secure REST integrations between Salesforce and the ClearTax GST Portal, automating financial reporting.',
+    short: 'Secure REST integrations with the ClearTax GST Portal.',
     stack: ['REST API', 'Apex', 'LWC'],
     points: [
       'Automated financial reporting with secure REST API integrations between Salesforce and the ClearTax GST Portal.',
@@ -170,6 +165,8 @@ export const solutions = [
     short:
       'A native Salesforce tool that profiles a record insert or update and shows every SOQL query, DML statement, flow, trigger, callout and async job it starts, grouped per transaction with governor-limit usage. It flags risky patterns such as queries in loops and unbulkified code. Data never leaves the org.',
     stack: ['Apex', 'Queueable', 'Scheduled Jobs', 'LWC', 'REST API'],
+    summary: 'An in-org profiler for what a record save really runs: every query, DML statement, flow, trigger, callout and async job, with governor-limit usage and flagged risks. Data never leaves the org.',
+    ai: 'the log parser and findings rules were drafted with an AI agent from a written spec, then tuned by hand against real debug logs.',
     points: [
       'Three capture modes: simulate a save inside an Apex test run that is started through the Tooling API and rolled back; trace real users live with TraceFlags; or commit in a sandbox and follow whole async chains.',
       'A multi-step Queueable engine with a Transaction Finalizer and a scheduled sweeper calls the Tooling and REST APIs through a Named Credential, fetches debug logs and always switches logging back off.',
@@ -185,6 +182,8 @@ export const solutions = [
     short:
       'A single hourly orchestrator replaces scattered System.schedule jobs. Schedules become records that admins can view, pause, edit and run from one tab without writing Apex, and every launch is checked against org async capacity first.',
     stack: ['Apex', 'Batch Apex', 'Queueable', 'Scheduled Jobs', 'LWC'],
+    summary: 'One hourly orchestrator replaces scattered System.schedule jobs. Admins view, pause, edit and run schedules from one tab, and every launch is checked against async capacity first.',
+    ai: 'the Apex and JavaScript cron engines were generated from one shared test suite, so both parse Salesforce cron identically.',
     points: [
       'One schedulable orchestrator closes finished runs from AsyncApexJob, launches due jobs by priority after dependency and capacity checks, and rolls the next run forward so missed windows never stack up.',
       'A Queueable launcher starts batch, Queueable or Schedulable classes by name, but only those allow-listed in custom metadata, so editing a record can never run arbitrary Apex.',
@@ -210,3 +209,41 @@ export const skillCat = {
   'REST API': 'integ', 'Connected Apps': 'integ',
   'Service Cloud': 'cloud', 'Sales Cloud': 'cloud',
 };
+
+// Headline numbers shown as widgets under the hero.
+export const stats = [
+  { n: 4, s: '', label: 'years building on the Salesforce platform', icon: '☁', c: 'c1' },
+  { n: 4, s: '', label: 'active Salesforce certifications', icon: '★', c: 'c2' },
+  { n: 50, s: '+', label: 'Visualforce pages migrated to LWC and Aura', icon: '⚡', c: 'c3' },
+  { n: 90, s: '%+', label: 'Apex test coverage on every deployment', icon: '✓', c: 'c4' },
+];
+
+export const approach = [
+  { icon: '❖', c: 'c1', title: 'Bulkified by default', text: 'Triggers and classes written for 200 records, not one. No queries or DML in loops.' },
+  { icon: '◔', c: 'c3', title: 'Limits in mind', text: 'Governor-limit analysis and SOQL tuning in code review, before production finds it.' },
+  { icon: '✓', c: 'c4', title: 'Tested properly', text: 'Apex test classes above 90% coverage, with regression tests for production bugs.' },
+  { icon: '➜', c: 'c2', title: 'Shipped cleanly', text: 'Salesforce DX, Git and Copado releases, with architecture docs the team actually uses.' },
+];
+
+export const capabilities = [
+  { icon: '{}', c: 'c2', title: 'Backend', text: 'Apex, triggers, Batch, Queueable, Scheduled Jobs, SOQL / SOSL' },
+  { icon: '⚡', c: 'c1', title: 'Frontend', text: 'LWC, Aura, Visualforce, reusable LWC design systems' },
+  { icon: '⇄', c: 'c4', title: 'Integration', text: 'REST / SOAP, Connected Apps, OAuth 2.0, Named Credentials' },
+  { icon: '↻', c: 'c3', title: 'Automation', text: 'Flow, approval processes, batch job orchestration' },
+  { icon: '⌘', c: 'c6', title: 'DevOps', text: 'Salesforce DX, Git, Copado, GitHub Actions, Change Sets' },
+  { icon: '✦', c: 'c5', title: 'AI', text: 'Agentforce, Einstein AI' },
+];
+
+// How AI is used: AI drafts, the developer owns design, limits and tests.
+export const aiFlow = [
+  { step: '01 · Specify', title: 'Design before prompting', text: 'I write the data model, transaction boundaries and limit budget first, so the agent works inside a real spec, not a guess.', who: ['me'] },
+  { step: '02 · Generate', title: 'Agent drafts in small slices', text: 'One class or component at a time with project context: Apex services, LWC, cron parser, log parser and test data factories.', who: ['ai', 'me'] },
+  { step: '03 · Review', title: 'Platform-aware review', text: "Every diff checked for SOQL in loops, bulk safety, sharing and CRUD/FLS, and async chain depth. AI misses these; I don't.", who: ['me'] },
+  { step: '04 · Prove', title: 'Tests are the gate', text: 'AI widens test coverage with edge cases and bulk scenarios; nothing merges until Apex tests pass in a scratch org.', who: ['ai', 'me'] },
+];
+export const aiCards = [
+  { icon: '✦', c: 'c2', kicker: 'Building with AI', title: 'Faster, not looser', text: 'AI handles the repetitive surface area so I spend my time on design and edge cases.',
+    points: ['Parsers and engines drafted from specs, then hardened by hand', 'Bulk and negative-path Apex tests generated, then reviewed', 'Architecture docs and admin guides drafted from the code'] },
+  { icon: '◎', c: 'c5', kicker: 'Building AI into Salesforce', title: 'Agentforce and Einstein', text: 'Certified AI Specialist and AI Associate. I prototype agents that act on real org data, safely.',
+    points: ['Agentforce agents prototyped for business process automation', 'Actions backed by Apex with permission and data-access checks', 'Prompt design grounded in org records, with trust-layer guardrails'] },
+];

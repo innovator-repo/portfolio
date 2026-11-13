@@ -1,21 +1,12 @@
 ---
-import '../styles/tokens.css';
-import '../styles/global.css';
-import '../styles/motion.css';
-import StickyPath from '../components/StickyPath.astro';
-import RecordHeader from '../components/RecordHeader.astro';
-import DetailsPanel from '../components/DetailsPanel.astro';
-import Credentials from '../components/Credentials.astro';
-import Contact from '../components/Contact.astro';
-import Experience from '../components/Experience.astro';
-import Work from '../components/Work.astro';
-import Skills from '../components/Skills.astro';
-import FlowRunner from '../components/FlowRunner.astro';
-import LimitsMeter from '../components/LimitsMeter.astro';
-import DevConsole from '../components/DevConsole.astro';
-import { profile, links, skills, certifications } from '../data/site.js';
+import '../styles/site.css';
+import {
+  profile, links, skills, certifications, superbadges, education, roles, projects, solutions,
+  stats, approach, capabilities, aiFlow, aiCards,
+} from '../data/site.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const img = (f) => `${base}img/${f}`;
 const site = 'https://innovator-repo.github.io/portfolio/';
 const title = 'Bharat Kumar · Salesforce Developer';
 const description =
@@ -36,18 +27,21 @@ const ld = {
     { '@type': 'CollegeOrUniversity', name: 'Bon Maharaj Institute of Management & Technology' },
   ],
 };
-const nav = [['top', 'Overview', '◎'], ['experience', 'Activity', '⏱'], ['work', 'Related', '▤'], ['skills', 'Skills', '✦'], ['contact', 'Contact', '✉']];
+const nav = [['top', 'Overview'], ['work', 'Work'], ['solutions', 'Solutions'], ['ai', 'AI'], ['approach', 'Approach'], ['experience', 'Experience'], ['credentials', 'Credentials']];
+const [lead, ...rest] = projects;
+const spans = ['s3', 's3', 's4', 's2'];
+const [inspector, scheduler] = solutions;
 ---
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-skin="light">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>if(location.hostname.endsWith('github.io'))addEventListener('load',function(){setTimeout(function(){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NZNLNPV2')},1500)});</script>
-    <script is:inline>(function(d){d.classList.add('js');var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t||t==="dreamforce"&&0)t="space";d.dataset.theme=t})(document.documentElement)</script>
+    <script is:inline>try{var t=localStorage.getItem('skin');if(t==='dark'||t==='light')document.documentElement.dataset.skin=t}catch(e){}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
     <link rel="canonical" href={site} />
     <link rel="icon" href={`${base}favicon.png`} type="image/png" />
@@ -68,54 +62,140 @@ const nav = [['top', 'Overview', '◎'], ['experience', 'Activity', '⏱'], ['wo
     <meta name="twitter:image" content={`${site}og.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </head>
   <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZNLNPV2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <canvas id="stars" aria-hidden="true"></canvas>
     <a class="skip" href="#main">Skip to content</a>
-    <header class="gnav">
-      <span class="launcher" aria-hidden="true">{Array.from({ length: 9 }).map(() => <i />)}</span>
-      <a class="appname" href="#top">Bharat Kumar <span class="sr-only">Salesforce Developer</span></a>
-      <nav aria-label="Sections">
-        {nav.map(([id, label]) => <a href={`#${id}`} data-nav={id}>{label}</a>)}
-      </nav>
-      <div class="gtools">
-        <button class="gbtn" type="button" data-open-console aria-label="Open Apex console"><span>Search or run Apex…</span><kbd>⌘K</kbd></button>
-        <div class="themes" role="group" aria-label="Theme">
-          <button type="button" data-set-theme="space" aria-pressed="false" title="Space (black)">Space</button>
-          <button type="button" data-set-theme="lightning" aria-pressed="false" title="Lightning (light)">Lightning</button>
-          <button type="button" data-set-theme="dreamforce" aria-pressed="false" title="Dreamforce (dark)">Dreamforce</button>
-          <button type="button" data-set-theme="trailhead" aria-pressed="false" title="Trailhead (playful)">Trailhead</button>
-        </div>
+    <nav aria-label="Primary"><div class="capsule">
+      <b><i class="ico i-bk" aria-hidden="true">BK</i>{profile.name}</b>
+      {nav.map(([id, label], i) => <a class={i === 0 ? 'cur' : undefined} href={`#${id}`}>{label}</a>)}
+      <button class="theme" type="button" aria-label="Switch between light and dark">☾</button>
+      <a class="go" href="#contact">Get in touch</a>
+    </div></nav>
+
+    <main id="main">
+    <header class="hero" id="top"><div class="wrap">
+      <span class="eyebrow">{profile.role}</span>
+      <h1>Salesforce that holds up in production.</h1>
+      <p class="lede">I build Apex, Lightning Web Components and integrations for Sales, Service and Experience Cloud, and automate the work people used to do by hand.</p>
+      <div class="cta"><a class="btn" href="#work">View my work</a><a class="lnk" href={`${base}Resume.pdf`} download>Download résumé ›</a></div>
+
+      <div class="stage" aria-label="Interactive demo of Transaction Inspector"><div class="wall" aria-hidden="true"></div><div class="app">
+        <div class="bar"><u></u><u></u><u></u><strong>Transaction Inspector</strong><div class="seg" role="tablist"><span class="on" role="tab">Map</span><span role="tab">Queries</span><span role="tab">Findings</span><span role="tab">Async</span></div></div>
+        <div class="cols">
+          <div class="side"><div class="lab">Transactions</div>
+            <div class="tx on" role="button" tabindex="0"><b class="c1">S</b>Sync save<small>412 ms</small></div>
+            <div class="tx c">AccountTrigger<small>before</small></div>
+            <div class="tx c">Account_Flow<small>after</small></div>
+            <div class="tx" role="button" tabindex="0"><b class="c2">F</b>@future callout<small>1.2 s</small></div>
+            <div class="tx" role="button" tabindex="0"><b class="c4">Q</b>SyncQueueable<small>640 ms</small></div>
+            <div class="tx c">Finalizer<small>ok</small></div>
+            <div class="tx" role="button" tabindex="0"><b class="c3">B</b>Batch chunk 1 of 4<small>2.1 s</small></div>
+            <div class="tx" role="button" tabindex="0"><b class="c5">E</b>Platform event<small>88 ms</small></div></div>
+          <div class="main" aria-live="polite"><h5>Sync save</h5><p>1 record · 2 triggers · 1 flow · 3 async jobs started</p>
+            <div class="lim">
+              <div><span>SOQL queries</span><strong>38 <small>of 100</small></strong><div class="pb"><s style="width:38%"></s></div></div>
+              <div><span>DML statements</span><strong>18 <small>of 150</small></strong><div class="pb g"><s style="width:12%"></s></div></div>
+              <div><span>CPU time</span><strong>7,940 <small>of 10,000 ms</small></strong><div class="pb o"><s style="width:79%"></s></div></div>
+              <div><span>Heap size</span><strong>1.4 <small>of 6 MB</small></strong><div class="pb p"><s style="width:23%"></s></div></div>
+              <div><span>Callouts</span><strong>2 <small>of 100</small></strong><div class="pb g"><s style="width:4%"></s></div></div>
+              <div><span>Queueable jobs</span><strong>1 <small>of 50</small></strong><div class="pb"><s style="width:3%"></s></div></div>
+            </div></div>
+          <div class="find" style="position:relative"><div class="lab">Findings</div>
+            <div class="f"><i style="background:#ff453a">!</i><div><b>SOQL query inside a loop</b><p><code>AccountTrigger.cls:42</code> runs once per record. Move it above the loop.</p></div></div>
+            <div class="f"><i style="background:#ff9f0a">!</i><div><b>CPU time near limit</b><p>79% used in one save. Flow and trigger both recalculate rollups.</p></div></div>
+            <div class="f"><i style="background:#30d158">✓</i><div><b>DML is bulkified</b><p>All 18 statements operate on collections.</p></div></div></div>
+        </div><span class="hint">Click a transaction ›</span></div></div>
+    </div></header>
+
+    <div class="proof"><div class="wrap">
+      <small>Delivered for teams at</small>
+      <div class="names"><b>Pinterest</b><b>Assurant</b><b>CleverTap</b></div>
+      <div class="widgets">
+        {stats.map((s) => <div class="wg"><i class={`ico ${s.c}`} aria-hidden="true">{s.icon}</i><strong data-n={s.n} data-s={s.s}>{s.n}{s.s}</strong><span>{s.label}</span></div>)}
       </div>
-    </header>
-    <StickyPath />
-    <main id="main" class="record">
-      <RecordHeader />
-      <aside class="col-l" aria-label="Details">
-        <DetailsPanel />
-        <Credentials />
-      </aside>
-      <div class="col-c">
-        <Experience />
-        <Work />
-        <Skills />
+    </div></div>
+
+    <section id="work"><div class="wrap">
+      <div class="hrow"><h2 class="h">Selected work. <span>Real orgs, real users, real limits.</span></h2></div>
+      <div class="grid">
+        <article class="tile s6 feat">
+          <div><div class="k">{lead.kicker}</div><h3>{lead.title}</h3>
+            <p>{lead.short}</p>
+            <div class="tags">{lead.stack.map((t) => <i>{t}</i>)}</div></div>
+          <div><div class="big" data-n="50" data-s="+">50+</div><small>Visualforce pages rebuilt</small>
+            <div class="list"><div><i class="ico c1">⚡</i><u>Page framework</u><s>Visualforce</s><em>→</em><u>LWC + Aura</u></div><div><i class="ico c4">⇄</i><u>Case routing</u><s>Manual</s><em>→</em><u>Automated</u></div><div><i class="ico c3">◷</i><u>SLA tracking</u><s>Spreadsheets</s><em>→</em><u>In platform</u></div></div></div>
+        </article>
+        {rest.map((p, i) => (
+          <article class={`tile ${spans[i] || 's3'}`}><div class="k">{p.kicker}</div><h3>{p.title}</h3><p>{p.short}</p><div class="tags">{p.stack.map((t) => <i>{t}</i>)}</div></article>
+        ))}
       </div>
-      <aside class="col-r" aria-label="Interactive">
-        <FlowRunner />
-        <LimitsMeter />
-        <Contact />
-      </aside>
+    </div></section>
+
+    <section class="alt" id="solutions"><div class="wrap">
+      <h2 class="h">Built on my own time. <span>Tools I wanted to exist.</span></h2>
+      <div class="grid">
+        <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2" aria-hidden="true">⌕</i><div class="k">{inspector.kicker}</div><h3>{inspector.title}</h3><p>{inspector.summary}</p><div class="aiuse"><b>Built with AI:</b> {inspector.ai}</div>
+          <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Findings</strong></div><div class="row"><b>SOQL queries</b><div class="pb"><s style="width:38%"></s></div><span>38 / 100</span></div><div class="row"><b>CPU time</b><div class="pb o"><s style="width:79%"></s></div><span>79%</span></div><div class="row"><b>Query in loop</b><span>line 42</span><span class="st r">High</span></div></div></article>
+        <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3" aria-hidden="true">◷</i><div class="k">{scheduler.kicker}</div><h3>{scheduler.title}</h3><p>{scheduler.summary}</p><div class="aiuse"><b>Built with AI:</b> {scheduler.ai}</div>
+          <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Schedules</strong></div>
+            <div class="row"><b>Nightly sync</b><span>0 0 2 * * ?</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
+            <div class="row"><b>Weekly cleanup</b><span>0 0 6 ? * MON</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
+            <div class="row"><b>Data checks</b><span>0 0 * * * ?</span><span class="stt">Paused</span><span class="sw" role="switch" aria-checked="false" tabindex="0"></span></div></div></article>
+      </div>
+    </div></section>
+
+    <section class="ai" id="ai"><div class="wall" aria-hidden="true"></div><div class="wrap">
+      <span class="eyebrow">AI-assisted engineering</span>
+      <h2 class="h" style="margin-top:8px">AI writes faster. <span>I decide what ships.</span></h2>
+      <p class="lede" style="margin:18px 0 0;text-align:left">I use AI coding agents as a force multiplier on the tools above: they draft, refactor and generate tests at speed, while I own the architecture, the platform limits and every line that reaches an org.</p>
+      <div class="flow">
+        {aiFlow.map((f) => <div><small>{f.step}</small><h4>{f.title}</h4><p>{f.text}</p><div class="who">{f.who.map((w) => <i class={w === 'ai' ? 'bot' : 'me'}>{w === 'ai' ? 'AI' : 'Me'}</i>)}</div></div>)}
+      </div>
+      <div class="grid">
+        {aiCards.map((c) => (
+          <div class="tile s3 aic"><i class={`ico ${c.c}`} style="width:46px;height:46px;font-size:20px;margin-bottom:18px" aria-hidden="true">{c.icon}</i><div class="k">{c.kicker}</div><h3>{c.title}</h3><p>{c.text}</p><ul>{c.points.map((p) => <li>{p}</li>)}</ul></div>
+        ))}
+      </div>
+    </div></section>
+
+    <section id="approach"><div class="wrap">
+      <h2 class="h">How I build. <span>Every time.</span></h2>
+      <div class="steps">
+        {approach.map((a) => <div><i class={`ico ${a.c}`} aria-hidden="true">{a.icon}</i><h4>{a.title}</h4><p>{a.text}</p></div>)}
+      </div>
+      <div class="grid">
+        {capabilities.map((c) => <div class="tile cap s2"><i class={`ico ${c.c}`} aria-hidden="true">{c.icon}</i><div><h4>{c.title}</h4><p>{c.text}</p></div></div>)}
+      </div>
+    </div></section>
+
+    <section class="alt" id="experience"><div class="wrap">
+      <h2 class="h">Experience. <span>Four years, two teams.</span></h2>
+      {roles.map((r) => (
+        <div class="role"><div><h3>{r.company}</h3><small>{r.title}</small><time>{r.when}</time></div><ul>{r.points.map((p) => <li>{p}</li>)}</ul></div>
+      ))}
+    </div></section>
+
+    <section id="credentials"><div class="wrap">
+      <h2 class="h">Certified. <span>And still learning.</span></h2>
+      <div class="badges">
+        {certifications.map((c) => <div class="badge"><img src={img(c.img)} alt="" loading="lazy" width="116" height="116" />{c.name}<small>Salesforce Certified</small></div>)}
+      </div>
+      <div class="sb">
+        {superbadges.map((b) => <div><img src={img(b.img)} alt="" loading="lazy" width="44" height="44" /><span>{b.name}<small>{b.sub}</small></span></div>)}
+      </div>
+      <div class="edu">{education.map((e) => <div><b>{e.degree}</b>{e.school} · {e.when}</div>)}</div>
+    </div></section>
+
+    <section class="end alt" id="contact"><div class="wall" aria-hidden="true"></div><div class="wrap">
+      <h2 class="h">Have a Salesforce problem worth solving?</h2>
+      <p>Let's talk about it.</p>
+      <div class="cta"><a class="btn" href={`mailto:${links.email}`}>Email me</a><a class="lnk" href={links.linkedin} rel="me noopener" target="_blank">LinkedIn ›</a><a class="lnk" href={links.trailhead} rel="me noopener" target="_blank">Trailhead ›</a><a class="lnk" href={links.github} rel="me noopener" target="_blank">GitHub ›</a></div>
+    </div></section>
     </main>
-    <nav class="tabbar" aria-label="Sections (mobile)">
-      {nav.map(([id, label, ic]) => <a href={`#${id}`} data-nav={id}><b aria-hidden="true">{ic}</b>{label}</a>)}
-    </nav>
-    <DevConsole />
-    <div class="toast" role="status" aria-live="polite"></div>
-    <script>
-      import '../scripts/app.js';
-    </script>
+    <footer><div class="wrap"><span>Copyright © 2026 {profile.name}. {profile.location}.</span><span><a href={`${base}Resume.pdf`}>Résumé</a> · <a href={links.linkedin}>LinkedIn</a> · <a href={links.trailhead}>Trailhead</a> · <a href={links.github}>GitHub</a></span></div></footer>
+    <script src="../scripts/site.js"></script>
   </body>
 </html>
