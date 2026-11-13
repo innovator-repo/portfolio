@@ -1,4 +1,4 @@
-(()=>{var gliding=false;
+(()=>{var gliding=false;const amb=document.querySelector('.ambient');
 const R=matchMedia('(prefers-reduced-motion: reduce)').matches, $=(q,c=document)=>[...c.querySelectorAll(q)];
 // theme toggle
 const tb=document.querySelector('.theme');const sync=()=>{tb.textContent=document.documentElement.dataset.skin==='dark'?'☀':'☾'};sync();tb.onclick=()=>{const d=document.documentElement;d.dataset.skin=d.dataset.skin==='dark'?'light':'dark';try{localStorage.setItem('skin',d.dataset.skin)}catch(e){}sync()};
@@ -11,7 +11,7 @@ function count(el){$('[data-n]',el).concat(el.dataset.n?[el]:[]).forEach(n=>{con
 // scroll: hero window flattens, nav shrinks, active link
 const app=document.querySelector('.stage'),nav=document.querySelector('nav'),links=$('.capsule a[href^="#"]');
 const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
-function onScroll(){const y=scrollY,r=app.getBoundingClientRect(),pr=Math.max(0,Math.min(1,1-(r.top-innerHeight*.2)/(innerHeight*.6)));
+function onScroll(){const y=scrollY;amb&&amb.style.setProperty('--sy',Math.round(y));const r=app.getBoundingClientRect(),pr=Math.max(0,Math.min(1,1-(r.top-innerHeight*.2)/(innerHeight*.6)));
  app.style.setProperty('--pr',pr.toFixed(3));app.querySelector('.app').style.setProperty('--tilt',(22*(1-pr)).toFixed(2));
  nav.classList.toggle('shrink',y>40);
  if(!gliding){let cur=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});links.forEach((a,i)=>a.classList.toggle('cur',i===cur))}}

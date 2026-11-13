@@ -211,3 +211,28 @@ html[data-skin=dark] .who .bot{color:#da8fff}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:8px}
 .skip{position:absolute;left:-999px;top:8px;z-index:20;background:var(--acc);color:#fff;padding:8px 14px;border-radius:99px}.skip:focus{left:12px}
+
+/* ===== One continuous canvas: no section bands, everything floats on a single ambient background ===== */
+html[data-skin=light],:root:not([data-skin]){--bg:#fbfbfd;--glass:rgba(255,255,255,.62);--card:rgba(255,255,255,.66);--cardline:rgba(255,255,255,.9);--cardsh:0 1px 1px rgba(0,0,0,.02),0 18px 44px -22px rgba(40,40,90,.22);--orb:.55}
+html[data-skin=dark]{--bg:#000;--card:rgba(28,28,30,.58);--cardline:rgba(255,255,255,.08);--cardsh:0 0 0 .5px rgba(255,255,255,.06),0 24px 50px -28px rgba(0,0,0,.9);--orb:.32}
+body{background:var(--bg)}
+.ambient{position:fixed;inset:-20vh -10vw;z-index:-1;pointer-events:none;transform:translate3d(0,calc(var(--sy,0)*-0.06px),0);will-change:transform}
+.ambient i{position:absolute;border-radius:50%;filter:blur(100px);opacity:var(--orb)}
+.ambient i:nth-child(1){width:46vw;height:46vw;left:-6vw;top:8vh;background:#9fd8ff}
+.ambient i:nth-child(2){width:40vw;height:40vw;right:-8vw;top:30vh;background:#d9c2ff}
+.ambient i:nth-child(3){width:38vw;height:38vw;left:24vw;top:72vh;background:#ffd1dc}
+.ambient i:nth-child(4){width:34vw;height:34vw;right:10vw;top:110vh;background:#c9f2e3}
+html[data-skin=dark] .ambient i:nth-child(1){background:#0a3d7a}html[data-skin=dark] .ambient i:nth-child(2){background:#3b1f6e}
+html[data-skin=dark] .ambient i:nth-child(3){background:#5a1830}html[data-skin=dark] .ambient i:nth-child(4){background:#0d4a3c}
+.alt,footer{background:transparent}
+section{padding:96px 0}
+.tile,.alt .tile,.wg,.badge,.sb div,.flow{background:var(--card);backdrop-filter:saturate(170%) blur(22px);-webkit-backdrop-filter:saturate(170%) blur(22px);box-shadow:inset 0 0 0 1px var(--cardline),var(--cardsh)}
+.list,.mini,.lim div,.f{background:color-mix(in srgb,var(--card) 70%,#fff 30%)}
+html[data-skin=dark] .list,html[data-skin=dark] .mini,html[data-skin=dark] .lim div,html[data-skin=dark] .f{background:rgba(255,255,255,.05)}
+/* glows fade out instead of ending in an edge */
+.ai,.end{overflow:visible}
+.ai .wall,.end .wall{-webkit-mask-image:radial-gradient(closest-side,#000 40%,transparent);mask-image:radial-gradient(closest-side,#000 40%,transparent)}
+.stage .wall{-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 100%);mask-image:linear-gradient(to bottom,#000 55%,transparent 100%);inset:0 0 -120px}
+footer .wrap{border-top:0}
+.role{border-top:0;position:relative}
+.role+.role:before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
