@@ -9,10 +9,11 @@ Every earlier design is kept as a branch under `archive/`, so any of them can be
 | `archive/v2-aurora` | Dark aurora, colour-coded skills, interactive org-graph hero |
 | `archive/v3-record-space` | Salesforce record page, four themes, true-black Space default, Apex console |
 | `archive/v4-concepts` | Same as v3 plus the `/terrain/` and `/globe/` concept pages |
-| `archive/v6-record-polished` | v4 improved: scroll-driven touches, mobile and accessibility fixes, plainer copy. This is the live site |
+| `archive/v6-record-polished` | v4 improved: scroll-driven touches, mobile and accessibility fixes, plainer copy |
+| `archive/v7-apple-light` | Light Apple-style design: scroll-driven 3D hero window, interactive Transaction Inspector demo, card depth and tilt, AI-assisted engineering section, dark-mode toggle. This is the live site |
 | `archive/v5-execution-log` | Scroll-craft design: scroll replays an Apex execution log, trace rail, command-line close. Tried live, then set aside; redeploy it any time |
 
-`main` is whatever is live (currently v6, the polished record-page design). The archive branches never change.
+`main` is whatever is live (currently v7, the light Apple-style design). The archive branches never change.
 
 ## Switch the live site to an old version (about 90 seconds)
 
