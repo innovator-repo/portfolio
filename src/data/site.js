@@ -23,7 +23,7 @@ export const links = {
   email: 'bharatmtr2002@gmail.com',
   linkedin: 'https://www.linkedin.com/in/kumar-bharat',
   trailhead: 'https://www.salesforce.com/trailblazer/bharatkumar2002',
-  github: 'https://github.com/Bharat100-cpu',
+  github: 'https://github.com/innovator-repo',
 };
 
 // The 12 skill tiles. They stay in the sidebar and light up for whatever is in view.

@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio site, live at https://bharat100-cpu.github.io/portfolio/
+Personal portfolio site, live at https://innovator-repo.github.io/portfolio/
 
 ## Stack
 
