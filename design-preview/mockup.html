@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-skin="graphite">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Design preview · Bharat Kumar</title>
+<style>
+:root{--f:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Helvetica Neue",Arial,sans-serif;--m:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;--r:28px;--w:1120px}
+html[data-skin=graphite]{--bg:#000;--bg2:#0a0a0c;--card:#141416;--card2:#1c1c1f;--ink:#f5f5f7;--mute:#98989f;--line:rgba(255,255,255,.1);--acc:#2997ff;--grad:linear-gradient(100deg,#7cc4ff,#2997ff 45%,#b78bff);--nav:rgba(10,10,12,.72);--btn:#f5f5f7;--btnink:#000;--glow:radial-gradient(60% 50% at 50% 0,rgba(41,151,255,.22),transparent 70%)}
+html[data-skin=daylight]{--bg:#fff;--bg2:#f5f5f7;--card:#f5f5f7;--card2:#fff;--ink:#1d1d1f;--mute:#6e6e73;--line:rgba(0,0,0,.1);--acc:#0071e3;--grad:linear-gradient(100deg,#0071e3,#0a5bd6 45%,#7a3df0);--nav:rgba(255,255,255,.76);--btn:#1d1d1f;--btnink:#fff;--glow:radial-gradient(60% 50% at 50% 0,rgba(0,113,227,.12),transparent 70%)}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--f);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:5;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:52px;gap:28px;font-size:13px}
+nav b{font-size:15px;letter-spacing:-.01em;margin-right:auto}
+nav a{color:var(--mute)}
+.pill{background:var(--acc);color:#fff!important;padding:6px 14px;border-radius:99px;font-weight:500}
+.hero{text-align:center;padding:96px 0 40px;background:var(--glow)}
+.eye{font-size:14px;font-weight:600;color:var(--acc);letter-spacing:.01em}
+h1{font-size:clamp(44px,7.4vw,88px);line-height:1.03;letter-spacing:-.035em;font-weight:700;margin:14px auto 20px;max-width:13ch}
+h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(18px,2vw,22px);color:var(--mute);max-width:56ch;margin:0 auto 30px;letter-spacing:-.01em}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:99px;font-size:16px;font-weight:500;background:var(--btn);color:var(--btnink)}
+.btn.ghost{background:none;color:var(--acc)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin:64px auto 0;max-width:900px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats div{padding:26px 8px;border-left:1px solid var(--line)}
+.stats div:first-child{border:0}
+.stats strong{display:block;font-size:40px;letter-spacing:-.03em;font-weight:650;line-height:1.1}
+.stats span{font-size:13px;color:var(--mute)}
+.clients{margin-top:28px;font-size:13px;color:var(--mute)}
+.clients b{color:var(--ink);font-weight:600;font-size:17px;margin:0 14px;letter-spacing:-.01em;opacity:.8}
+section{padding:96px 0}
+section.alt{background:var(--bg2)}
+.h{font-size:clamp(34px,4.6vw,56px);letter-spacing:-.03em;line-height:1.06;font-weight:700;max-width:18ch}
+.h span{color:var(--mute)}
+.sub{color:var(--mute);font-size:19px;margin-top:14px;max-width:58ch}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:48px}
+.tile{background:var(--card);border-radius:var(--r);padding:34px;display:flex;flex-direction:column;min-height:300px;border:1px solid var(--line)}
+section.alt .tile{background:var(--card2)}
+.s6{grid-column:span 6}.s4{grid-column:span 4}.s3{grid-column:span 3}.s2{grid-column:span 2}
+.k{font-size:12px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.tile h3{font-size:30px;letter-spacing:-.025em;line-height:1.1;margin:10px 0 10px;font-weight:650}
+.tile p{color:var(--mute);font-size:15.5px;max-width:52ch}
+.tags{margin-top:auto;padding-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+.tags i{font-style:normal;font-size:12px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);color:var(--mute)}
+.more{color:var(--acc);font-size:15px;margin-top:14px}
+.feat{flex-direction:row;gap:40px;align-items:center;min-height:380px}
+.feat>div{flex:1}
+.win{flex:1.1;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px;font-family:var(--m);font-size:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.win .bar{display:flex;gap:6px;margin-bottom:14px}.win .bar u{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:var(--mute)}
+.row b{color:var(--ink);font-weight:500;min-width:150px}
+.row.on{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.meter{flex:1;height:5px;border-radius:9px;background:var(--line);overflow:hidden}.meter s{display:block;height:100%;background:var(--acc);border-radius:9px}
+.ok{color:#30d158}.warn{color:#ff9f0a}
+.cap{min-height:0;padding:26px}
+.cap h4{font-size:17px;letter-spacing:-.01em;margin-bottom:6px}
+.cap p{font-size:14.5px}
+.role{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:36px 0;border-top:1px solid var(--line)}
+.role:first-of-type{margin-top:44px}
+.role h3{font-size:24px;letter-spacing:-.02em}
+.role small{color:var(--mute);font-size:14px;display:block;margin-top:4px}
+.role li{color:var(--mute);margin:0 0 10px 18px;font-size:16px}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+.badge{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 18px;text-align:center;font-size:15px;font-weight:600}
+.badge img{height:104px;display:block;margin:0 auto 14px;object-fit:contain}
+.badge small{display:block;color:var(--mute);font-weight:400;font-size:13px}
+.end{text-align:center;padding:120px 0}
+.end .h{margin:0 auto 26px;max-width:15ch}
+footer{border-top:1px solid var(--line);padding:22px 0;font-size:12px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between}
+@media(max-width:760px){nav a:not(.pill){display:none}.hero{padding-top:64px}.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}
+.s4,.s3,.s2{grid-column:span 6}.feat{flex-direction:column;align-items:stretch}.role{grid-template-columns:1fr;gap:14px}.badges{grid-template-columns:1fr 1fr}section{padding:64px 0}.clients b{display:inline-block;margin:6px 10px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Bharat Kumar</b><a>Work</a><a>Solutions</a><a>Capabilities</a><a>Experience</a><a>Credentials</a><a class="pill">Get in touch</a></div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eye">Salesforce Developer · Platform Developer I</div>
+  <h1>Salesforce that holds up in <em>production.</em></h1>
+  <p class="lede">I build Apex, LWC and integrations for Sales, Service and Experience Cloud, and automate the work people used to do by hand.</p>
+  <div class="cta"><a class="btn">View my work</a><a class="btn ghost">Download résumé ›</a></div>
+  <div class="stats">
+    <div><strong>4</strong><span>years on the platform</span></div>
+    <div><strong>4</strong><span>active certifications</span></div>
+    <div><strong>50+</strong><span>Visualforce pages moved to LWC</span></div>
+    <div><strong>90%+</strong><span>Apex test coverage, every release</span></div>
+  </div>
+  <p class="clients">Delivered for <b>Pinterest</b><b>Assurant</b><b>CleverTap</b></p>
+</div></header>
+
+<section class="alt"><div class="wrap">
+  <h2 class="h">Selected work. <span>Real orgs, real users.</span></h2>
+  <div class="grid">
+    <article class="tile s6 feat">
+      <div><div class="k">Healthcare · Current</div><h3>PA Re-Auth Hub</h3>
+        <p>A weekly batch and queueable chain finds Prior Authorizations expiring within 40 days, opens Reimbursement cases, runs benefit verification and syncs the results. A real-time LWC dashboard shows it all.</p>
+        <div class="more">Read the case study ›</div>
+        <div class="tags"><i>Batch Apex</i><i>Queueable</i><i>Scheduled Jobs</i><i>LWC</i></div></div>
+      <div class="win"><div class="bar"><u></u><u></u><u></u></div>
+        <div class="row on"><b>ReAuthScanBatch</b><span class="meter"><s style="width:100%"></s></span><span class="ok">Done</span></div>
+        <div class="row"><b>CaseCreateQueueable</b><span class="meter"><s style="width:100%"></s></span><span class="ok">Done</span></div>
+        <div class="row"><b>BenefitVerifyQueueable</b><span class="meter"><s style="width:64%"></s></span><span class="warn">Running</span></div>
+        <div class="row"><b>ResultSyncQueueable</b><span class="meter"><s style="width:0"></s></span><span>Queued</span></div>
+      </div>
+    </article>
+    <article class="tile s3"><div class="k">Insurance</div><h3>Assurant</h3><p>Migrated 50+ complex Visualforce pages to LWC and Aura in an 18-member global team, and automated Service Cloud case routing and SLA tracking.</p><div class="tags"><i>Service Cloud</i><i>LWC</i><i>Aura</i></div></article>
+    <article class="tile s3"><div class="k">Customer engagement</div><h3>CleverTap</h3><p>A Batch Apex and Scheduled Jobs backend for high-volume records within governor limits, plus a secure Quip integration through Connected Apps.</p><div class="tags"><i>Batch Apex</i><i>Connected Apps</i></div></article>
+    <article class="tile s4"><div class="k">Digital advertising</div><h3>Pinterest</h3><p>Custom LWC interfaces for Sales Cloud, Order and Quote management, and Flows in place of deprecated Process Builder automations.</p><div class="tags"><i>Sales Cloud</i><i>LWC</i><i>Flows</i></div></article>
+    <article class="tile s2"><div class="k">Real estate</div><h3>Robotex</h3><p>REST integrations with the ClearTax GST Portal.</p><div class="tags"><i>REST API</i><i>Apex</i></div></article>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="h">Built on my own time. <span>Tools I wanted to exist.</span></h2>
+  <div class="grid">
+    <article class="tile s3" style="min-height:420px"><div class="k">Developer tooling</div><h3>Transaction Inspector</h3><p>An in-org profiler that shows every SOQL query, DML statement, flow, trigger, callout and async job a record save really runs, with governor-limit usage and flagged risks.</p><div class="more">How it works ›</div>
+      <div class="win" style="margin-top:22px;flex:0"><div class="row"><b>SOQL queries</b><span class="meter"><s style="width:38%"></s></span>38 / 100</div><div class="row"><b>DML statements</b><span class="meter"><s style="width:12%"></s></span>18 / 150</div><div class="row on"><b>Query in loop</b><span class="warn">High · AccountTrigger:42</span></div></div></article>
+    <article class="tile s3" style="min-height:420px"><div class="k">Platform operations</div><h3>Scheduled Jobs Manager</h3><p>One hourly orchestrator replaces scattered System.schedule jobs. Admins view, pause, edit and run schedules from one tab, and every launch is checked against async capacity.</p><div class="more">How it works ›</div>
+      <div class="win" style="margin-top:22px;flex:0"><div class="row"><b>Nightly sync</b><span>0 0 2 * * ?</span><span class="ok" style="margin-left:auto">Active</span></div><div class="row"><b>Weekly re-auth</b><span>0 0 6 ? * MON</span><span class="ok" style="margin-left:auto">Active</span></div><div class="row"><b>Data checks</b><span>0 0 * * * ?</span><span style="margin-left:auto">Paused</span></div></div></article>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2 class="h">Capabilities.</h2>
+  <div class="grid">
+    <div class="tile cap s2"><h4>Backend</h4><p>Apex, triggers, Batch, Queueable, Scheduled Jobs, SOQL / SOSL</p></div>
+    <div class="tile cap s2"><h4>Frontend</h4><p>LWC, Aura, Visualforce, reusable LWC design systems</p></div>
+    <div class="tile cap s2"><h4>Integration</h4><p>REST / SOAP, Connected Apps, OAuth 2.0, Named Credentials</p></div>
+    <div class="tile cap s2"><h4>Automation</h4><p>Flow, approval processes, batch job orchestration</p></div>
+    <div class="tile cap s2"><h4>DevOps</h4><p>Salesforce DX, Git, Copado, GitHub Actions, Change Sets</p></div>
+    <div class="tile cap s2"><h4>AI</h4><p>Agentforce, Einstein AI</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="h">Experience.</h2>
+  <div class="role"><div><h3>PCGI</h3><small>Salesforce Developer<br>Dec 2025 – Present</small></div><ul>
+    <li>Built a reusable LWC design-system kit and a dependency-free, in-browser Excel generator used across production dashboards.</li>
+    <li>Wrote business-day logic that lines up IST hours with the client's US calendar, so batch jobs and SLA timing run on the right day.</li>
+    <li>Prototyped AI agents for business process automation with Agentforce.</li></ul></div>
+  <div class="role"><div><h3>Fexle Services</h3><small>Salesforce Developer<br>May 2022 – Jun 2025</small></div><ul>
+    <li>Led an enterprise-wide migration from Salesforce Classic to Lightning Experience.</li>
+    <li>Kept test coverage above 90% across all deployments.</li>
+    <li>Root-caused high-priority production bugs through structured debugging and regression testing.</li></ul></div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <h2 class="h">Certified. <span>And still learning.</span></h2>
+  <div class="badges">
+    <div class="badge"><img src="../public/img/Platform-Developer-I.png" alt="">Platform Developer I<small>Certification</small></div>
+    <div class="badge"><img src="../public/img/ai-specialist.png" alt="">AI Specialist<small>Certification</small></div>
+    <div class="badge"><img src="../public/img/ai-associate.png" alt="">AI Associate<small>Certification</small></div>
+    <div class="badge"><img src="../public/img/Associate.png" alt="">Associate<small>Certification</small></div>
+  </div>
+</div></section>
+
+<section class="end"><div class="wrap">
+  <h2 class="h">Have a Salesforce problem worth solving?</h2>
+  <div class="cta"><a class="btn">bharatmtr2002@gmail.com</a><a class="btn ghost">LinkedIn ›</a><a class="btn ghost">Trailhead ›</a></div>
+</div></section>
+<footer><div class="wrap"><span>Bharat Kumar · Mathura, India</span><span>GitHub · LinkedIn · Trailhead</span></div></footer>
+</body></html>
