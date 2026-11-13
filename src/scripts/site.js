@@ -1,7 +1,7 @@
 (()=>{var gliding=false;const amb=document.querySelector('.ambient');
 const R=matchMedia('(prefers-reduced-motion: reduce)').matches, $=(q,c=document)=>[...c.querySelectorAll(q)];
 // theme toggle
-const tb=document.querySelector('.theme');const sync=()=>{tb.textContent=document.documentElement.dataset.skin==='dark'?'☀':'☾'};sync();tb.onclick=()=>{const d=document.documentElement;d.dataset.skin=d.dataset.skin==='dark'?'light':'dark';try{localStorage.setItem('skin',d.dataset.skin)}catch(e){}sync()};
+const tb=document.querySelector('.theme');const sync=()=>{tb.setAttribute('aria-pressed',document.documentElement.dataset.skin==='dark')};sync();tb.onclick=()=>{const d=document.documentElement;d.dataset.skin=d.dataset.skin==='dark'?'light':'dark';try{localStorage.setItem('skin',d.dataset.skin)}catch(e){}sync()};
 // reveal with stagger
 $('.h,.lede,.flow,.widgets>*,.grid>*,.steps>*,.role,.badges>*,.sb>*,.names,.edu,.end .cta').forEach(e=>{e.classList.add('rv');const sib=[...e.parentNode.children].indexOf(e);e.style.setProperty('--d',(Math.min(sib,6)*.07)+'s')});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);count(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});

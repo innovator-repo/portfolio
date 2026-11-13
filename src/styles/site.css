@@ -236,3 +236,9 @@ html[data-skin=dark] .list,html[data-skin=dark] .mini,html[data-skin=dark] .lim 
 footer .wrap{border-top:0}
 .role{border-top:0;position:relative}
 .role+.role:before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+.theme{display:inline-grid;place-items:center}
+.theme .sun,html[data-skin=dark] .theme .moon{display:none}
+html[data-skin=dark] .theme .sun{display:block}
+.badge img{width:116px;height:116px}
+.steps .ico{font-weight:800}
+@media(max-width:560px){.list div{display:grid;grid-template-columns:26px auto auto 1fr;column-gap:8px;row-gap:3px;align-items:center}.list .ico{grid-row:1/3;align-self:center}.list div>u:first-of-type{grid-column:2/5;margin-left:4px}.list s{grid-column:2;margin:0 0 0 4px;font-size:13px}.list em{grid-column:3;font-size:13px}.list div>u:last-of-type{grid-column:4;font-size:13px}}

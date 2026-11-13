@@ -220,7 +220,7 @@ export const stats = [
 
 export const approach = [
   { icon: '❖', c: 'c1', title: 'Bulkified by default', text: 'Triggers and classes written for 200 records, not one. No queries or DML in loops.' },
-  { icon: '◔', c: 'c3', title: 'Limits in mind', text: 'Governor-limit analysis and SOQL tuning in code review, before production finds it.' },
+  { icon: '≤', c: 'c3', title: 'Limits in mind', text: 'Governor-limit analysis and SOQL tuning in code review, before production finds it.' },
   { icon: '✓', c: 'c4', title: 'Tested properly', text: 'Apex test classes above 90% coverage, with regression tests for production bugs.' },
   { icon: '➜', c: 'c2', title: 'Shipped cleanly', text: 'Salesforce DX, Git and Copado releases, with architecture docs the team actually uses.' },
 ];
