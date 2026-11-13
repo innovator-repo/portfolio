@@ -1,4 +1,4 @@
-(()=>{
+(()=>{var gliding=false;
 const R=matchMedia('(prefers-reduced-motion: reduce)').matches, $=(q,c=document)=>[...c.querySelectorAll(q)];
 // theme toggle
 const tb=document.querySelector('.theme');const sync=()=>{tb.textContent=document.documentElement.dataset.skin==='dark'?'☀':'☾'};sync();tb.onclick=()=>{const d=document.documentElement;d.dataset.skin=d.dataset.skin==='dark'?'light':'dark';try{localStorage.setItem('skin',d.dataset.skin)}catch(e){}sync()};
@@ -14,8 +14,27 @@ const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 function onScroll(){const y=scrollY,r=app.getBoundingClientRect(),pr=Math.max(0,Math.min(1,1-(r.top-innerHeight*.2)/(innerHeight*.6)));
  app.style.setProperty('--pr',pr.toFixed(3));app.querySelector('.app').style.setProperty('--tilt',(22*(1-pr)).toFixed(2));
  nav.classList.toggle('shrink',y>40);
- let cur=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});links.forEach((a,i)=>a.classList.toggle('cur',i===cur))}
-addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+ if(!gliding){let cur=0;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<innerHeight*.4)cur=i});links.forEach((a,i)=>a.classList.toggle('cur',i===cur))}}
+let ticking=false;addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{ticking=false;onScroll()})}},{passive:true});onScroll();
+// Eased in-page navigation: smooth, distance-aware, lands below the floating nav.
+let navLock=0;
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+function glide(target){
+  const navH=(document.querySelector('.capsule')?.offsetHeight||48)+28;
+  const to=Math.max(0,Math.min(target.getBoundingClientRect().top+scrollY-(target.id==='top'?0:navH),document.documentElement.scrollHeight-innerHeight));
+  const from=scrollY,dist=to-from;if(Math.abs(dist)<2)return;
+  if(R){scrollTo(0,to);return}
+  gliding=true;const dur=Math.min(1100,Math.max(520,Math.abs(dist)*.32)),t0=performance.now(),id=++navLock;
+  document.documentElement.style.scrollBehavior='auto';
+  const stop=()=>{navLock++;cleanup()},cleanup=()=>{gliding=false;removeEventListener('wheel',stop);removeEventListener('touchstart',stop);document.documentElement.style.scrollBehavior=''};
+  addEventListener('wheel',stop,{passive:true,once:true});addEventListener('touchstart',stop,{passive:true,once:true});
+  const step=now=>{if(id!==navLock)return;const k=Math.min(1,(now-t0)/dur);scrollTo(0,from+dist*ease(k));if(k<1)requestAnimationFrame(step);else{navLock++;cleanup();onScroll()}};
+  requestAnimationFrame(step);
+}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a||e.metaKey||e.ctrlKey)return;const id=a.getAttribute('href').slice(1);const t=id?document.getElementById(id):null;if(!t)return;
+  e.preventDefault();links.forEach(l=>l.classList.toggle('cur',l.getAttribute('href')==='#'+id));glide(t);history.replaceState(null,'','#'+id);
+  if(id!=='top'&&id!=='main'){t.setAttribute('tabindex','-1');t.focus({preventScroll:true})}});
+
 // 3D tilt + glare
 $('.tile,.wg,.badge').forEach(t=>{t.classList.add('tilt');const g=document.createElement('span');g.className='glare';t.appendChild(g);
  t.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||R)return;const b=t.getBoundingClientRect(),x=(e.clientX-b.left)/b.width,y=(e.clientY-b.top)/b.height,m=b.width>700?3:7;
