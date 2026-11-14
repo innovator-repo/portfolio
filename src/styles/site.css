@@ -278,3 +278,12 @@ footer .wrap{flex-wrap:wrap;gap:6px 20px;align-items:center}
 /* no macOS window controls: title bars start with the title */
 .bar strong{margin-left:2px}
 .bar u{display:none}
+/* ambient: layer stays pinned to the viewport; only the glows drift a little, so no edge can ever appear */
+.ambient{inset:0;transform:none!important;will-change:auto}
+.ambient i{transform:translate3d(0,calc(var(--sp,0)*-90px),0);will-change:transform;transition:none}
+.ambient i:nth-child(2n){transform:translate3d(0,calc(var(--sp,0)*90px),0)}
+.ambient i:nth-child(1){width:52vw;height:52vw;left:-14vw;top:-14vh}
+.ambient i:nth-child(2){width:46vw;height:46vw;right:-12vw;top:18vh}
+.ambient i:nth-child(3){width:44vw;height:44vw;left:18vw;top:58vh}
+.ambient i:nth-child(4){width:42vw;height:42vw;right:2vw;top:70vh}
+@media(max-width:820px){.ambient i{width:90vw!important;height:90vw!important}.ambient i:nth-child(3){top:62vh}.ambient i:nth-child(4){top:84vh}}
