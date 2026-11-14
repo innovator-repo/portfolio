@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://innovator-repo.github.io/portfolio/bharat/sitemap.xml
