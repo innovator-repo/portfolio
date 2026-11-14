@@ -27,7 +27,7 @@ const ld = {
     { '@type': 'CollegeOrUniversity', name: 'Bon Maharaj Institute of Management & Technology' },
   ],
 };
-const nav = [['top', 'Overview'], ['work', 'Work'], ['solutions', 'Solutions'], ['ai', 'AI'], ['approach', 'Approach'], ['experience', 'Experience'], ['credentials', 'Credentials']];
+const nav = [['top', 'Overview'], ['work', 'Work'], ['solutions', 'Solutions'], ['demo', 'Demo'], ['ai', 'AI'], ['approach', 'Approach'], ['experience', 'Experience'], ['credentials', 'Credentials']];
 const [lead, ...rest] = projects;
 const spans = ['s3', 's3', 's4', 's2'];
 const [inspector, scheduler] = solutions;
@@ -138,14 +138,32 @@ const [inspector, scheduler] = solutions;
     <section class="alt" id="solutions"><div class="wrap">
       <h2 class="h">Built on my own time. <span>Tools I wanted to exist.</span></h2>
       <div class="grid">
-        <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2" aria-hidden="true">⌕</i><div class="k">{inspector.kicker}</div><h3>{inspector.title}</h3><p>{inspector.summary}</p><div class="aiuse"><b>Built with AI:</b> {inspector.ai}</div>
+        <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2" aria-hidden="true">⌕</i><div class="k">{inspector.kicker}</div><h3>{inspector.title}</h3><p>{inspector.summary}</p><div class="aiuse"><b>Built with AI:</b> {inspector.ai}</div><a class="more watch" href="#demo" data-demo="txn">Watch the demo ›</a>
           <div class="mini"><div class="bar"><strong>Findings</strong></div><div class="row"><b>SOQL queries</b><div class="pb"><s style="width:38%"></s></div><span>38 / 100</span></div><div class="row"><b>CPU time</b><div class="pb o"><s style="width:79%"></s></div><span>79%</span></div><div class="row"><b>Query in loop</b><span>line 42</span><span class="st r">High</span></div></div></article>
-        <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3" aria-hidden="true">◷</i><div class="k">{scheduler.kicker}</div><h3>{scheduler.title}</h3><p>{scheduler.summary}</p><div class="aiuse"><b>Built with AI:</b> {scheduler.ai}</div>
+        <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3" aria-hidden="true">◷</i><div class="k">{scheduler.kicker}</div><h3>{scheduler.title}</h3><p>{scheduler.summary}</p><div class="aiuse"><b>Built with AI:</b> {scheduler.ai}</div><a class="more watch" href="#demo" data-demo="jobs">Watch the demo ›</a>
           <div class="mini"><div class="bar"><strong>Schedules</strong></div>
             <div class="row"><b>Nightly sync</b><span>0 0 2 * * ?</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
             <div class="row"><b>Weekly cleanup</b><span>0 0 6 ? * MON</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
             <div class="row"><b>Data checks</b><span>0 0 * * * ?</span><span class="stt">Paused</span><span class="sw" role="switch" aria-checked="false" tabindex="0"></span></div></div></article>
       </div>
+    </div></section>
+
+
+    <section id="demo"><div class="wrap">
+      <div class="hrow"><h2 class="h">See them in action. <span>Recorded from the real apps.</span></h2></div>
+      <div class="demo-tabs" role="tablist" aria-label="Choose a demo">
+        <button type="button" role="tab" aria-selected="true" data-demo="txn">Transaction Inspector</button>
+        <button type="button" role="tab" aria-selected="false" data-demo="jobs">Scheduled Jobs Manager</button>
+      </div>
+      <figure class="player">
+        <video playsinline muted loop preload="none" poster={`${base}media/transaction-inspector-poster.jpg`}
+          data-txn={`${base}media/transaction-inspector`} data-jobs={`${base}media/job-scheduler`}
+          data-txn-poster={`${base}media/transaction-inspector-poster.jpg`} data-jobs-poster={`${base}media/job-scheduler-poster.jpg`}
+          aria-label="Product demo video"></video>
+        <button class="play" type="button" aria-label="Play demo"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></button>
+        <figcaption class="sr">Silent product demo recorded from the React app running with sample data.</figcaption>
+      </figure>
+      <p class="demo-note">The React apps run inside Salesforce. These demos use their built-in sample data, so no org data is shown.</p>
     </div></section>
 
     <section class="ai" id="ai"><div class="wall" aria-hidden="true"></div><div class="wrap">

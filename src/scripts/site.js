@@ -68,3 +68,15 @@ const bo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 $('.sw').forEach(s=>s.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();s.click()}}));
 $('.sw').forEach(s=>s.addEventListener('click',()=>{s.classList.toggle('on');s.setAttribute('aria-checked',s.classList.contains('on'));s.previousElementSibling.textContent=s.classList.contains('on')?'Active':'Paused'}));
 })();
+// Demo videos: lazy-load near the viewport, autoplay muted when visible (not under reduced motion), tab switching.
+(()=>{const fig=document.querySelector('.player');if(!fig)return;const v=fig.querySelector('video'),btn=fig.querySelector('.play'),tabs=[...document.querySelectorAll('.demo-tabs [data-demo]')];
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches;let cur='txn',loaded=false,visible=false;
+const srcs=k=>{const b=v.dataset[k];v.innerHTML=`<source src="${b}.webm" type="video/webm"><source src="${b}.mp4" type="video/mp4">`;v.poster=v.dataset[k+'Poster'];v.load();loaded=true};
+const play=()=>{if(!loaded)srcs(cur);v.play().then(()=>fig.classList.add('playing')).catch(()=>{})};
+btn.addEventListener('click',play);v.addEventListener('click',()=>{if(v.paused)play();else{v.pause();fig.classList.remove('playing')}});
+v.addEventListener('pause',()=>fig.classList.remove('playing'));
+new IntersectionObserver(es=>es.forEach(e=>{visible=e.isIntersecting;if(e.isIntersecting){if(!loaded)srcs(cur);if(!R)play()}else if(!v.paused)v.pause()}),{threshold:.35,rootMargin:'200px 0px 0px 0px'}).observe(fig);
+const show=k=>{if(k===cur&&loaded)return;cur=k;tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.demo===k));fig.classList.add('swap');setTimeout(()=>{srcs(k);fig.classList.remove('swap');if(visible&&!R)play();else fig.classList.remove('playing')},R?0:250)};
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.demo)));
+document.querySelectorAll('a.watch[data-demo]').forEach(a=>a.addEventListener('click',()=>show(a.dataset.demo)));
+})();
