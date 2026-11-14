@@ -1,7 +1,11 @@
 # Résumé source
 
-`resume.html` is the source of `public/Resume.pdf`. To regenerate after editing:
+`resume.html` is the source of `public/Resume.pdf`. The fonts are embedded in the PDF and are not stored in the repo.
 
 ```sh
-node -e "const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage();await p.goto('file://'+process.cwd()+'/resume/resume.html',{waitUntil:'networkidle'});await p.pdf({path:'public/Resume.pdf',format:'A4',printBackground:true,preferCSSPageSize:true});await b.close()})()"
+python3 resume/extract-fonts.py   # writes resume/fonts/*.ttf from the current PDF
+node resume/print.cjs             # prints resume.html back to public/Resume.pdf
 ```
+
+Note: the embedded fonts are subsets, so new text can only use characters already in the résumé
+(for example the body font has no K, Y, Z, 6 or semicolon). Check new text before printing.
