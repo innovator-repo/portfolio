@@ -84,7 +84,7 @@ const [inspector, scheduler] = solutions;
       <div class="cta"><a class="btn" href="#work">View my work</a><a class="lnk" href={`${base}Resume.pdf`} download>Download résumé ›</a></div>
 
       <div class="stage" aria-label="Interactive demo of Transaction Inspector"><div class="wall" aria-hidden="true"></div><div class="app">
-        <div class="bar"><u></u><u></u><u></u><strong>Transaction Inspector</strong><div class="seg" role="tablist"><span class="on" role="tab">Map</span><span role="tab">Queries</span><span role="tab">Findings</span><span role="tab">Async</span></div></div>
+        <div class="bar"><strong>Transaction Inspector</strong><div class="seg" role="tablist"><span class="on" role="tab">Map</span><span role="tab">Queries</span><span role="tab">Findings</span><span role="tab">Async</span></div></div>
         <div class="cols">
           <div class="side"><div class="lab">Transactions</div>
             <div class="tx on" role="button" tabindex="0"><b class="c1">S</b>Sync save<small>412 ms</small></div>
@@ -139,9 +139,9 @@ const [inspector, scheduler] = solutions;
       <h2 class="h">Built on my own time. <span>Tools I wanted to exist.</span></h2>
       <div class="grid">
         <article class="tile s3 prod"><span class="tint t1"></span><i class="ico c2" aria-hidden="true">⌕</i><div class="k">{inspector.kicker}</div><h3>{inspector.title}</h3><p>{inspector.summary}</p><div class="aiuse"><b>Built with AI:</b> {inspector.ai}</div>
-          <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Findings</strong></div><div class="row"><b>SOQL queries</b><div class="pb"><s style="width:38%"></s></div><span>38 / 100</span></div><div class="row"><b>CPU time</b><div class="pb o"><s style="width:79%"></s></div><span>79%</span></div><div class="row"><b>Query in loop</b><span>line 42</span><span class="st r">High</span></div></div></article>
+          <div class="mini"><div class="bar"><strong>Findings</strong></div><div class="row"><b>SOQL queries</b><div class="pb"><s style="width:38%"></s></div><span>38 / 100</span></div><div class="row"><b>CPU time</b><div class="pb o"><s style="width:79%"></s></div><span>79%</span></div><div class="row"><b>Query in loop</b><span>line 42</span><span class="st r">High</span></div></div></article>
         <article class="tile s3 prod"><span class="tint t2"></span><i class="ico c3" aria-hidden="true">◷</i><div class="k">{scheduler.kicker}</div><h3>{scheduler.title}</h3><p>{scheduler.summary}</p><div class="aiuse"><b>Built with AI:</b> {scheduler.ai}</div>
-          <div class="mini"><div class="bar"><u></u><u></u><u></u><strong>Schedules</strong></div>
+          <div class="mini"><div class="bar"><strong>Schedules</strong></div>
             <div class="row"><b>Nightly sync</b><span>0 0 2 * * ?</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
             <div class="row"><b>Weekly cleanup</b><span>0 0 6 ? * MON</span><span class="stt">Active</span><span class="sw on" role="switch" aria-checked="true" tabindex="0"></span></div>
             <div class="row"><b>Data checks</b><span>0 0 * * * ?</span><span class="stt">Paused</span><span class="sw" role="switch" aria-checked="false" tabindex="0"></span></div></div></article>
